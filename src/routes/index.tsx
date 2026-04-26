@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { Layout } from "../components/LayoutPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export const router = createBrowserRouter([
 	{
 		path: ROUTES.MAIN,
 		element: <Layout />,
-		errorElement: <h1>404</h1>,
 		children: [
 			{
-				path: ROUTES.MAIN,
+				index: true,
 				lazy: async () => {
 					const { MainPage } = await import("../pages/MainPage");
 					return { Component: MainPage };
@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
 					const { FavoritesPage } = await import("../pages/FavoritesPage");
 					return { Component: FavoritesPage };
 				}
+			},
+			{
+				path: "*",
+				element: <NotFoundPage />
 			}
 		]
 	}

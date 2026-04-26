@@ -1,7 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "./Header";
-import { useAppSelector } from "../hooks/useStoreHooks";
+import { Header } from "../Header";
+import { useAppSelector } from "../../hooks/useStoreHooks";
 import { useEffect } from "react";
+import { Footer } from "../Footer";
+import styles from "./styles.module.css";
 
 export function Layout() {
 	const theme = useAppSelector((state) => state.theme.value);
@@ -16,12 +18,12 @@ export function Layout() {
 	}, [theme]);
 
 	return (
-		<div className="app-wrapper">
+		<div className={styles.layout}>
 			<Header />
-			<main>
+			<main className={styles.content}>
 				<Outlet />
 			</main>
-			<footer>Подвал сайта</footer>
+			<Footer />
 		</div>
 	);
 }
