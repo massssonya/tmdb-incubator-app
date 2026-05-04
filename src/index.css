@@ -14,7 +14,10 @@
 
 	--color-blue-600: rgb(37, 99, 235);
 
+	--color-body-text: rgb(33 53 71);
 	--color-control-text: rgb(17, 24, 39);
+
+	--border-radius-form: 12px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,6 +32,7 @@
 
 		--color-indigo-400: rgb(241, 242, 244);
 
+		--color-body-text: rgb(232, 238, 243);
 		--color-control-text: rgb(248, 250, 252);
 	}
 }
@@ -43,7 +47,8 @@
 	--color-gray-900: rgb(17, 24, 39);
 
 	--color-indigo-400: rgb(20, 28, 44);
-
+	
+	--color-body-text: rgb(33 53 71);
 	--color-control-text: rgb(17, 24, 39);
 }
 
@@ -57,8 +62,13 @@
 	--color-gray-900: rgb(248, 250, 252);
 
 	--color-indigo-400: rgb(241, 242, 244);
-
+	
+	--color-body-text: rgb(232, 238, 243);
 	--color-control-text: rgb(248, 250, 252)
+}
+
+h2{
+	font-size: 20px;
 }
 
 a {

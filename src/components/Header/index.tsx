@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import {Brightness3 as Moon,Brightness7 as Sun} from "@mui/icons-material"
 import { ROUTES } from "../../routes/routes";
 import styles from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStoreHooks";
@@ -56,7 +57,7 @@ const ThemeButton = () => {
 
 	return (
 		<button onClick={() => dispatch(toggleTheme())} className={styles.themeButton}>
-			{theme === "light" ? "🌙" : "☀️"}
+			{theme === "light" ? <Moon /> : <Sun className={styles.light} />}
 		</button>
 	);
 };
