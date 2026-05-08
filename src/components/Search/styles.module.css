@@ -1,0 +1,34 @@
+.search-form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 600px;
+}
+
+.search-container{
+    position: relative;
+    width: 100%;
+}
+
+.search-input{
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 40px;
+}
+
+.search-input-reset{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button:disabled{
+    cursor: no-drop;
+}

@@ -81,5 +81,6 @@ a:active {
 }
 
 a:any-link {
-	cursor: auto;
+	cursor: pointer;
 }
+
