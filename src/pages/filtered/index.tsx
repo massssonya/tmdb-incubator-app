@@ -1,25 +1,26 @@
-import {SectionLayout} from "../components/SectionLayout"
-import {FilteredSortForm} from "../components/FilteredSortForm"
-import {Container, Stack, Box} from '@mui/material';
+
+import {Stack, Box} from '@mui/material';
+import { SectionLayout } from '../../components/SectionLayout';
+import { FilteredSortForm } from '../../components/FilteredSortForm';
 
 export function FilteredMoviesPage(){
 	return (
 		<SectionLayout>
-				<Stack 
-					direction="row" 
-                    sx={{ 
+				<Stack
+					direction="row"
+                    sx={{
 						boxSizing: 'border-box',
 						width: '100%',
-						justifyContent: "space-between", 
-						gap: "32px", 
+						justifyContent: "space-between",
+						gap: "32px",
 						alignItems: "flex-start"
 					}}>
-				<Box 
+				<Box
 					sx={{
                         position: 'sticky',
                         top: '20px',
 						height: '100%',
-                        flexShrink: 0  
+                        flexShrink: 0
                     }}
 				>
 					<FilteredSortForm />
@@ -29,4 +30,3 @@ export function FilteredMoviesPage(){
 		</SectionLayout>
 	);
 }
-

@@ -1,19 +1,21 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../Header";
-import { useAppSelector } from "../../hooks/useStoreHooks";
 import { useTheme } from "../../hooks/useTheme";
-import { useLayoutEffect } from "react";
 import { Footer } from "../Footer";
 import styles from "./styles.module.css";
 
 export function Layout() {
-	useTheme()
+	useTheme();
 
 	return (
 		<div className={styles.layout}>
 			<Header />
-			<main className={styles.content}>
-				<Outlet />
+			<main className={styles.main}>
+				<div className={styles.wrapper}>
+					<div className={styles.container}>
+						<Outlet />
+					</div>
+				</div>
 			</main>
 			<Footer />
 		</div>

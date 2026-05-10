@@ -1,9 +1,11 @@
-import {SectionLayout} from "../components/SectionLayout"
-import {Search} from "../components/Search"
+
 import {Container, Typography} from '@mui/material'
 import { useSearchParams } from 'react-router-dom';
 import {useEffect} from "react"
-import {useForm} from "../hooks/useForm"
+import { useForm } from '../../hooks/useForm';
+import { SectionLayout } from '../../components/SectionLayout';
+import { Search } from '../../components/Search';
+
 
 interface FormState {
 	search: string
@@ -38,18 +40,18 @@ export function SearchPage(){
 	return (
 		<SectionLayout>
 			<h1>Search Results</h1>
-			<Container 
-				disableGutters={true} 
+			<Container
+				disableGutters={true}
 				sx={{marginTop: "20px"}}
 			>
-				<Search 
+				<Search
 					fieldName="search"
 					placeholder="Введите название фильма..."
 					reset={reset}
 					{...formMethods}
 				/>
 			</Container>
-			<Typography as="p" sx={{marginTop: "20px"}}>Enter a movie title to start searching.</Typography>
+			<Typography sx={{marginTop: "20px"}}>Enter a movie title to start searching.</Typography>
 		</SectionLayout>
 	);
 }
