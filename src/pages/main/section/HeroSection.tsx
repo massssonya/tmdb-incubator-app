@@ -1,41 +1,46 @@
-import { Container } from "@mui/material";
-import { Search } from "../../../components/Search";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "../../../hooks/useForm";
-import { ROUTES } from "../../../routes/routes";
+import { useGetPopularMoviesQuery } from "../../../store/services/popular";
+
+import { getRandomItem } from "../../../lib/helpers";
+import { getImageUrl } from "../../../lib/getImageUrl";
+
 import styles from "./hero.styles.module.css";
+import { useMemo } from "react";
+import { HeroSkeleton } from "./HeroSkeleton";
+import { HeroContent } from "./HeroContent";
+
 export default function HeroSection() {
-	const navigate = useNavigate();
+	const { data, isLoading, isError } = useGetPopularMoviesQuery();
 
-	const formMethods = useForm(
-		{ search: "" },
-		(data) => navigate(`/${ROUTES.SEARCH}?query=${data.search}`),
-		0,
-		false
-	);
+	const backdropPath = useMemo(() => {
+		if (!data?.results.length) return null;
 
-	const reset = () => {
-		formMethods.update("search", "");
-	};
+		return getRandomItem(data.results)?.backdrop_path ?? null;
+	}, [data]);
+
+	const backgroundImage = backdropPath
+		? `
+			linear-gradient(
+				rgba(4, 21, 45, 0) 0%,
+				rgb(18, 18, 18) 79.17%
+			),
+			url(${getImageUrl(backdropPath)})
+		  `
+		: undefined;
+
+	if (isError) {
+		return (
+			<section className={styles.section}>
+				<HeroContent isError />
+			</section>
+		);
+	}
 
 	return (
 		<section
 			className={styles.section}
-			style={{
-				backgroundImage:
-					'linear-gradient(rgba(4, 21, 45, 0) 0%, rgb(18, 18, 18) 79.17%), url("http://image.tmdb.org/t/p/original/1x9e0qWonw634NhIsRdvnneeqvN.jpg")'
-			}}
+			style={!isLoading ? { backgroundImage } : undefined}
 		>
-			<Container className={styles.container}>
-				<h1 className={styles.title}>Welcome</h1>
-				<h2 className={styles.subtitle}>Browse highlighted titles from TMDB</h2>
-				<Search
-					fieldName="search"
-					placeholder="Введите название фильма..."
-					reset={reset}
-					{...formMethods}
-				/>
-			</Container>
+			{isLoading ? <HeroSkeleton /> : <HeroContent />}
 		</section>
 	);
 }

@@ -32,3 +32,8 @@
 	font-size: 24px;
 	color: var(--color-white);
 }
+
+.backgroundSkeleton {
+	position: absolute;
+	inset: 0;
+}
