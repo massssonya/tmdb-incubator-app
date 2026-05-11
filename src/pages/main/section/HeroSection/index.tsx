@@ -1,15 +1,13 @@
-import { useGetPopularMoviesQuery } from "../../../store/services/popular";
-
-import { getRandomItem } from "../../../lib/helpers";
-import { getImageUrl } from "../../../lib/getImageUrl";
-
-import styles from "./hero.styles.module.css";
+import styles from "./styles.module.css";
 import { useMemo } from "react";
 import { HeroSkeleton } from "./HeroSkeleton";
 import { HeroContent } from "./HeroContent";
+import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies";
+import { getRandomItem } from "../../../../lib/helpers";
+import { getImageUrl } from "../../../../lib/getBackdropUrl";
 
 export default function HeroSection() {
-	const { data, isLoading, isError } = useGetPopularMoviesQuery();
+	const { data, isLoading, isError } = useGetMoviesByCategoryQuery({category: "popular"});
 
 	const backdropPath = useMemo(() => {
 		if (!data?.results.length) return null;

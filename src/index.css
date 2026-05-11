@@ -1,5 +1,6 @@
 :root {
 	--color-white: rgb(255, 255, 255);
+	--color-black: rgb(0, 0, 0);
 
 	--color-gray-50: rgb(249, 250, 251);
 	--color-gray-100: rgb(243, 244, 246);
@@ -13,6 +14,9 @@
 	--color-indigo-500: rgb(79, 70, 229);
 
 	--color-blue-600: rgb(37, 99, 235);
+	--color-yellow-400: rgb(250, 204, 21);
+	--color-red-600: rgb(220, 38, 38);
+	--color-green-600: rgb(22, 163, 74);
 
 	--color-page-background: rgb(248, 250, 252);
 

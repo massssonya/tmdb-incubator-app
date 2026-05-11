@@ -17,6 +17,6 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 })
 export const api = createApi({
   reducerPath: 'themoviedbApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['PopularMovie'],
+  tagTypes: ['Movie'],
   endpoints: () => ({}),
 })

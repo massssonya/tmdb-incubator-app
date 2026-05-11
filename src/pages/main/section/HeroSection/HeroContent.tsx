@@ -1,10 +1,12 @@
 import { Container } from "@mui/material";
-import { Search } from "../../../components/Search";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "../../../hooks/useForm";
-import { ROUTES } from "../../../routes/routes";
 
-import styles from "./hero.styles.module.css";
+import { useNavigate } from "react-router-dom";
+
+
+import styles from "./styles.module.css";
+import { useForm } from "../../../../hooks/useForm";
+import { ROUTES } from "../../../../routes/routes";
+import { Search } from "../../../../components/Search";
 
 interface HeroContentProps {
 	isError?: boolean;

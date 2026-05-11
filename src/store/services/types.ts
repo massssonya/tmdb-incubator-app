@@ -1,4 +1,4 @@
-interface Movie {
+export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -15,7 +15,9 @@ interface Movie {
 	vote_count: number;
 }
 
-export interface PopularMoviesResponse {
+export type MovieCategoryType = "popular" | "top_rated" | "upcoming" | "now_playing";
+
+export interface MoviesResponse {
 	page: number;
 	results: Movie[];
 	total_pages: number;

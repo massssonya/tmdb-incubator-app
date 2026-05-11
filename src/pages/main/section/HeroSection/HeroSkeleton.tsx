@@ -1,6 +1,6 @@
 import { Container, Skeleton } from "@mui/material";
 
-import styles from "./hero.styles.module.css";
+import styles from "./styles.module.css";
 
 export const HeroSkeleton = () => {
 	return (
