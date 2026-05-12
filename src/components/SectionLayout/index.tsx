@@ -1,7 +1,16 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
-export function SectionLayout({children}:{children: React.ReactNode}){
-    return(
-        <section className={styles.section}>{children}</section>
-    )
+interface Props {
+	children: React.ReactNode;
+	withPadding?: boolean;
+}
+
+export function SectionLayout({ children, withPadding = true }: Props) {
+	return (
+		<section
+			className={`${styles.section} ${withPadding ? styles.hasPadding : ""}`}
+		>
+			{children}
+		</section>
+	);
 }

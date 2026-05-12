@@ -15,6 +15,8 @@ export interface Movie {
 	vote_count: number;
 }
 
+export type MovieCardType = Pick<Movie, "id" | "poster_path" | "title" | "vote_average">;
+
 export type MovieCategoryType = "popular" | "top_rated" | "upcoming" | "now_playing";
 
 export interface MoviesResponse {

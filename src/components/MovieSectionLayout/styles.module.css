@@ -1,0 +1,17 @@
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 16px;
+}

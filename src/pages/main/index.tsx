@@ -7,7 +7,7 @@ export function MainPage() {
 
 
 	return (
-		<SectionLayout>
+		<SectionLayout withPadding={false}>
 			<HeroSection />
 			<MovieSection />
 		</SectionLayout>

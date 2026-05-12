@@ -4,6 +4,7 @@ import type { MovieCategoryType } from "../../../../store/services/types";
 import styles from "./styles.module.css";
 import { MovieSkeleton } from "./MovieSkeleton";
 import { MovieCard } from "../../../../components/MovieCard";
+import { MovieSectionLayout } from "../../../../components/MovieSectionLayout";
 
 const sections: { title: string; category: MovieCategoryType }[] = [
 	{ title: "Popular Movies", category: "popular" },
@@ -37,20 +38,15 @@ const MovieCategory = ({ title, category }: MovieCategoryProps) => {
 	});
 
 	return (
-		<section className={styles.section}>
-			<div className={styles.header}>
-				<h2>{title}</h2>
-				<button>View more</button>
-			</div>
-			<div className={styles.grid}>
-				{isLoading ? (
-					<MovieSkeleton />
-				) : (
-					data?.results
-						.slice(0, 6)
-						.map((movie) => <MovieCard key={movie.id} {...movie} />)
-				)}
-			</div>
-		</section>
+		<MovieSectionLayout
+			title={title}
+			isLoading={isLoading}
+			skeleton={<MovieSkeleton />}
+			onViewMore={() => {}}
+		>
+			{data?.results.slice(0, 6).map((movie) => (
+				<MovieCard key={movie.id} {...movie} />
+			))}
+		</MovieSectionLayout>
 	);
 };

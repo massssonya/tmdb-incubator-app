@@ -3,20 +3,14 @@ import { Favorite } from "@mui/icons-material";
 import styles from "./styles.module.css";
 import { Badge, type VariantType } from "../UI/Badge";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStoreHooks";
-import { toggleFavorite } from "../../store/reducers/favorites";
+import { toggleFavorite } from "../../store/services/favorites";
+import type { MovieCardType } from "../../store/services/types";
 
-interface Props {
-	id: number;
-	title: string;
-	poster_path: string;
-	vote_average: number;
-}
-
-export function MovieCard({ id, poster_path, title, vote_average }: Props) {
+export function MovieCard({ id, poster_path, title, vote_average }: MovieCardType) {
 	const dispatch = useAppDispatch();
-	const isFavorite = useAppSelector(
-		(state) => state.favorites.movieIds
-	).includes(id);
+	const isFavorite = useAppSelector((state) =>
+		state.favorites.movies.find((movie) => movie.id === id)
+	);
 	const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 	const variant: VariantType =
 		vote_average >= 7 ? "positive" : vote_average >= 5 ? "neutral" : "negative";
@@ -35,7 +29,9 @@ export function MovieCard({ id, poster_path, title, vote_average }: Props) {
 					aria-label="Add to favorites"
 					title="Add to favorites"
 					className={`${styles.likeButton} ${isFavorite ? styles.favorite : ""}`}
-					onClick={() => dispatch(toggleFavorite(id))}
+					onClick={() =>
+						dispatch(toggleFavorite({ id, poster_path, title, vote_average }))
+					}
 				>
 					<Favorite color="inherit" />
 				</button>

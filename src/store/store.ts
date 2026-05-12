@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./reducers/theme";
-import favoritesReducer from "./reducers/favorites";
+import favoritesReducer from "./services/favorites";
 import { api } from "./services/api";
 import { favoritesMiddleware } from "./middleware/favoritesMiddleware";
 

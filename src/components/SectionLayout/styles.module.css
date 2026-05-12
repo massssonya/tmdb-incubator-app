@@ -1,6 +1,9 @@
 .section {
 	display: flex;
 	flex-direction: column;
-	gap: 64px;
-	padding-bottom: 64px;
+	gap: 32px;
+}
+
+.hasPadding {
+	padding-block: 32px;
 }
