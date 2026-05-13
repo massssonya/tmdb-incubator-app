@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { MOVIE_CATEGORIES } from "../../lib/constants/movieSections";
-import { useGetMoviesByCategoryQuery } from "../../store/services/movies";
-import type { MovieCategoryType } from "../../store/services/types";
+import { useGetMoviesByCategoryQuery } from "../../store/services/movies/api";
+import type { MovieCategoryType } from "../../store/services/movies/types";
+
 
 const INITIAL_PAGE = 1;
 

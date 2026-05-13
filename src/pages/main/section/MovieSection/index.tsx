@@ -1,11 +1,11 @@
-import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies";
-import type { MovieCategoryType } from "../../../../store/services/types";
+import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies/api";
 
 import styles from "./styles.module.css";
 import { MovieCard } from "../../../../components/MovieCard";
 import { MovieSectionLayout } from "../../../../components/MovieSectionLayout";
 import { MOVIE_CATEGORIES } from "../../../../lib/constants/movieSections";
 import { MovieSkeleton } from "../../../../components/MovieSkeleton";
+import type { MovieCategoryType } from "../../../../store/services/movies/types";
 
 export const MovieSection = () => {
 	return (

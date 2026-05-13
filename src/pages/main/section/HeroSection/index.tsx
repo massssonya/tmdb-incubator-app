@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { useMemo } from "react";
 import { HeroSkeleton } from "./HeroSkeleton";
 import { HeroContent } from "./HeroContent";
-import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies";
+import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies/api";
 import { getRandomItem } from "../../../../lib/helpers";
 import { getImageUrl } from "../../../../lib/getBackdropUrl";
 

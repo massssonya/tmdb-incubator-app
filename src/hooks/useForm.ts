@@ -1,37 +1,47 @@
-import {useState, useEffect,useMemo,useCallback,useRef, type ChangeEvent} from "react"
-import {useDebounce} from "./useDebounce"
+import { useState, useEffect, useCallback, useRef } from "react";
 
-export function useForm<T>(
-    initState:T, 
-    callback: (data: T) => void, 
-    delay: number = 300,
-    autoSubmit: boolean = true
-    ){
-    const [form, setForm] = useState<T>(initState)
-    const debouncedForm = useDebounce(form, delay);
-    const callbackRef = useRef(callback);
+import { useDebounce } from "./useDebounce";
 
-    useEffect(() => {
-        callbackRef.current = callback;
-    }, [callback]);
+export function useForm<T extends object>(
+	initialState: T,
+	callback: (data: T) => void,
+	delay: number = 300,
+	autoSubmit: boolean = true
+) {
+	const [form, setForm] = useState<T>(initialState);
 
-    const update = useCallback((name: keyof FormState, value: any) => {
-        setForm(prev => ({ ...prev, [name]: value }));
-    }, []);
+	const debouncedForm = useDebounce(form, delay);
 
-    const submit = useCallback((e?) => {
-        callbackRef.current(form);
-    }, [form]);
+	const callbackRef = useRef(callback);
 
-    useEffect(() => {
-        if (autoSubmit && debouncedForm) {
-            callbackRef.current(debouncedForm);
-        }
-    }, [debouncedForm, autoSubmit]);
+	useEffect(() => {
+		callbackRef.current = callback;
+	}, [callback]);
 
-    return {
-        form,
-        update,
-        submit
-    }
+	const update = useCallback(<K extends keyof T>(name: K, value: T[K]) => {
+		setForm((prev) => ({
+			...prev,
+			[name]: value
+		}));
+	}, []);
+
+	const submit = useCallback(() => {
+		callbackRef.current(form);
+	}, [form]);
+
+	useEffect(() => {
+		if (autoSubmit) {
+			callbackRef.current(debouncedForm);
+		}
+	}, [debouncedForm, autoSubmit]);
+
+	return {
+		form,
+
+		update,
+
+		reset: () => setForm(initialState),
+
+		submit
+	};
 }

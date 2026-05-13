@@ -3,7 +3,7 @@ import { Skeleton } from "@mui/material";
 import styles from "./styles.module.css";
 
 interface Props {
-	length: number;
+	length?: number;
 }
 
 export const MovieSkeleton = ({ length = 6 }: Props) => {
