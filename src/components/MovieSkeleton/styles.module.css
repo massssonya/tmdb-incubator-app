@@ -1,0 +1,4 @@
+.skeleton {
+	background-color: var(--color-gray-200);
+	border-radius: var(--border-radius-form);
+}

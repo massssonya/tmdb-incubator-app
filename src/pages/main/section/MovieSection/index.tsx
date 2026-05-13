@@ -2,21 +2,15 @@ import { useGetMoviesByCategoryQuery } from "../../../../store/services/movies";
 import type { MovieCategoryType } from "../../../../store/services/types";
 
 import styles from "./styles.module.css";
-import { MovieSkeleton } from "./MovieSkeleton";
 import { MovieCard } from "../../../../components/MovieCard";
 import { MovieSectionLayout } from "../../../../components/MovieSectionLayout";
-
-const sections: { title: string; category: MovieCategoryType }[] = [
-	{ title: "Popular Movies", category: "popular" },
-	{ title: "Top Rated Movies", category: "top_rated" },
-	{ title: "Upcoming Movies", category: "upcoming" },
-	{ title: "Now Playing", category: "now_playing" }
-];
+import { MOVIE_CATEGORIES } from "../../../../lib/constants/movieSections";
+import { MovieSkeleton } from "../../../../components/MovieSkeleton";
 
 export const MovieSection = () => {
 	return (
 		<div className={styles.sections}>
-			{sections.map((section) => (
+			{MOVIE_CATEGORIES.map((section) => (
 				<MovieCategory
 					key={section.category}
 					title={section.title}

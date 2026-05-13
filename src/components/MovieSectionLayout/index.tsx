@@ -1,17 +1,17 @@
-import type { ReactNode } from "react";
+import type {
+	CSSProperties,
+	ReactNode
+} from "react";
 
 import styles from "./styles.module.css";
 
 interface Props {
 	title: string;
-
 	isLoading?: boolean;
-
 	onViewMore?: () => void;
-
 	skeleton?: ReactNode;
-
 	children: ReactNode;
+	columns?: number;
 }
 
 export const MovieSectionLayout = ({
@@ -19,7 +19,8 @@ export const MovieSectionLayout = ({
 	isLoading,
 	onViewMore,
 	skeleton,
-	children
+	children,
+	columns = 6
 }: Props) => {
 	return (
 		<section className={styles.section}>
@@ -33,7 +34,14 @@ export const MovieSectionLayout = ({
 				)}
 			</div>
 
-			<div className={styles.grid}>
+			<div
+				className={styles.grid}
+				style={
+					{
+						"--columns": columns
+					} as CSSProperties
+				}
+			>
 				{isLoading
 					? skeleton
 					: children}

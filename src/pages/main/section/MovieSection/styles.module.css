@@ -21,8 +21,3 @@
 	grid-template-columns: repeat(6, 1fr);
 	gap: 16px;
 }
-
-.skeleton {
-	background-color: var(--color-gray-200);
-	border-radius: var(--border-radius-form);
-}

@@ -1,7 +1,10 @@
-export function CategoryMoviesPage(){
+import { CategoryMoviesList } from "../../components/CategoryMoviesList";
+import { SectionLayout } from "../../components/SectionLayout";
+
+export function CategoryMoviesPage() {
 	return (
-		<div>
-			<h1>CategoryMoviesPage</h1>
-		</div>
+		<SectionLayout>
+			<CategoryMoviesList />
+		</SectionLayout>
 	);
 }

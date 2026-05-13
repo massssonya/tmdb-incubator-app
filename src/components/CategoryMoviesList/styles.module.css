@@ -1,0 +1,11 @@
+.categorySwitchContainer{
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

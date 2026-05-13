@@ -23,6 +23,9 @@
 	--color-body-text: rgb(33 53 71);
 	--color-control-text: rgb(17, 24, 39);
 
+	--color-primary-text: rgb(255, 255, 255);
+	--color-primary-background: rgb(79, 70, 229);
+
 	--border-radius-form: 12px;
 }
 
