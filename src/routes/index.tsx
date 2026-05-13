@@ -11,35 +11,35 @@ export const router = createBrowserRouter([
 			{
 				index: true,
 				lazy: async () => {
-					const { MainPage } = await import("../pages/main");
+					const { MainPage } = await import("../pages/MainPage");
 					return { Component: MainPage };
 				}
 			},
 			{
 				path: ROUTES.CATEGORIES,
 				lazy: async () => {
-					const { CategoryMoviesPage } = await import("../pages/category");
+					const { CategoryMoviesPage } = await import("../pages/CategoryPage");
 					return { Component: CategoryMoviesPage };
 				}
 			},
 			{
 				path: ROUTES.FILTERED,
 				lazy: async () => {
-					const { FilteredMoviesPage } = await import("../pages/filtered");
+					const { FilteredMoviesPage } = await import("../pages/FilteredPage");
 					return { Component: FilteredMoviesPage };
 				}
 			},
 			{
 				path: ROUTES.SEARCH,
 				lazy: async () => {
-					const { SearchPage } = await import("../pages/search");
+					const { SearchPage } = await import("../pages/SearchPage");
 					return { Component: SearchPage };
 				}
 			},
 			{
 				path: ROUTES.FAVORITES,
 				lazy: async () => {
-					const { FavoritesPage } = await import("../pages/favorites");
+					const { FavoritesPage } = await import("../pages/FavoritesPage");
 					return { Component: FavoritesPage };
 				}
 			},

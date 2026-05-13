@@ -52,6 +52,7 @@ export type SortByType =
 	| "title.desc";
 
 export type DiscoverMoviesArgs = {
+	page?: number;
 	sort_by?: SortByType;
 	vote_average_gte?: number;
 	vote_average_lte?: number;

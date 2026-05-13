@@ -2,18 +2,21 @@ import { useMemo } from "react";
 import { MenuItem, Typography } from "@mui/material";
 import { SelectSortBy } from "./SelectSortBy";
 import { RatingSlider } from "./RatingSlider";
-
 import { GenresSwitch } from "./GenresSwitch";
 import { MOVIE_FILTER_ITEMS } from "../../lib/constants/movieFilterItems";
-import { useFilteredSortForm } from "./useFilteredSortForm";
+import type { FilteredSortFormProps } from "./types";
 import { Button } from "../UI/Button";
 
 import styles from "./styles.module.css";
 
-export function FilteredSortForm() {
-	const { toggleGenre, reset, form, updateSelectSortBy, updateRating, genres } =
-		useFilteredSortForm();
-
+export function FilteredSortForm({
+	formState,
+	reset,
+	toggleGenre,
+	updateSelectSortBy,
+	updateRating,
+	genres
+}: FilteredSortFormProps) {
 	const selectMenuItems = useMemo(() => {
 		return MOVIE_FILTER_ITEMS.map((item) => (
 			<MenuItem key={item.value} value={item.value}>
@@ -28,19 +31,19 @@ export function FilteredSortForm() {
 
 			<SelectSortBy
 				items={selectMenuItems}
-				sort={form.sort}
+				sort={formState.sort}
 				onChange={updateSelectSortBy}
 			/>
 
 			<RatingSlider
-				minRating={form.rating[0]}
-				maxRating={form.rating[1]}
+				minRating={formState.rating[0]}
+				maxRating={formState.rating[1]}
 				onChange={updateRating}
 			/>
 
 			<GenresSwitch
 				genresData={genres || []}
-				formGenres={form.genres}
+				formGenres={formState.genres}
 				toggle={toggleGenre}
 			/>
 

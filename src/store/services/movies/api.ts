@@ -22,7 +22,8 @@ export const moviesApi = api.injectEndpoints({
 				sort_by = "",
 				vote_average_gte = 0,
 				vote_average_lte = 10,
-				with_genres
+				with_genres = "",
+				page = 1
 			}) => ({
 				url: `3/discover/movie`,
 				params: {
@@ -38,15 +39,33 @@ export const moviesApi = api.injectEndpoints({
 
 					...(with_genres && {
 						with_genres
-					})
+					}),
+
+					page
 				}
-			})
+			}),
+			serializeQueryArgs: ({ endpointName, queryArgs }) => {
+				return {
+					endpointName,
+
+					sort_by: queryArgs.sort_by,
+
+					vote_average_gte: queryArgs.vote_average_gte,
+
+					vote_average_lte: queryArgs.vote_average_lte,
+
+					with_genres: queryArgs.with_genres,
+
+					page: queryArgs.page
+				};
+			}
 		}),
 		getGenres: build.query<GenreResponse, void>({
 			query: () => ({
 				url: `3/genre/movie/list`
 			}),
-			providesTags: ["Genres"]
+			providesTags: ["Genres"],
+			keepUnusedDataFor: 3600
 		})
 	})
 });

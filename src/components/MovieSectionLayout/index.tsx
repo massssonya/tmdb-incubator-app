@@ -1,12 +1,9 @@
-import type {
-	CSSProperties,
-	ReactNode
-} from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import styles from "./styles.module.css";
 
 interface Props {
-	title: string;
+	title?: string;
 	isLoading?: boolean;
 	onViewMore?: () => void;
 	skeleton?: ReactNode;
@@ -24,15 +21,13 @@ export const MovieSectionLayout = ({
 }: Props) => {
 	return (
 		<section className={styles.section}>
-			<div className={styles.header}>
-				<h2>{title}</h2>
+			{(title || onViewMore) && (
+				<div className={styles.header}>
+					{title && <h2>{title}</h2>}
 
-				{onViewMore && (
-					<button onClick={onViewMore}>
-						View more
-					</button>
-				)}
-			</div>
+					{onViewMore && <button onClick={onViewMore}>View more</button>}
+				</div>
+			)}
 
 			<div
 				className={styles.grid}
@@ -42,9 +37,7 @@ export const MovieSectionLayout = ({
 					} as CSSProperties
 				}
 			>
-				{isLoading
-					? skeleton
-					: children}
+				{isLoading ? skeleton : children}
 			</div>
 		</section>
 	);

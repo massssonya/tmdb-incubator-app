@@ -1,13 +1,10 @@
 import { Container } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
-
-
-import styles from "./styles.module.css";
 import { useForm } from "../../../../hooks/useForm";
 import { ROUTES } from "../../../../routes/routes";
 import { Search } from "../../../../components/Search";
 
+import styles from "./styles.module.css";
 interface HeroContentProps {
 	isError?: boolean;
 }
@@ -35,19 +32,18 @@ export const HeroContent = ({ isError }: HeroContentProps) => {
 const HeroSearch = () => {
 	const navigate = useNavigate();
 
-	const formMethods = useForm(
-		{ search: "" },
-		(data) => navigate(`/${ROUTES.SEARCH}?query=${data.search}`),
-		0,
-		false
-	);
+	const formMethods = useForm({ search: "" });
 
 	return (
 		<Search
-			fieldName="search"
+			value={formMethods.form.search}
+			onChange={(value) => formMethods.update("search", value)}
+			submit={() =>
+				navigate(`/${ROUTES.SEARCH}?query=${formMethods.form.search}`)
+			}
+			reset={() => formMethods.reset()}
+			buttonText="Search"
 			placeholder="Введите название фильма..."
-			reset={() => formMethods.update("search", "")}
-			{...formMethods}
 		/>
 	);
 };

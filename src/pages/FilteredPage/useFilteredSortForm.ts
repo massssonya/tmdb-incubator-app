@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 import { useForm } from "../../hooks/useForm";
 import { MOVIE_FILTER_ITEMS } from "../../lib/constants/movieFilterItems";
 import { useGetGenresQuery } from "../../store/services/movies";
@@ -19,36 +21,33 @@ const initialState: FormState = {
 export function useFilteredSortForm() {
 	const { data } = useGetGenresQuery();
 
-	const { form, update, reset } = useForm<FormState>(
-		initialState,
-		(data) => {
-			console.log("Данные отправлены:", data);
-		},
-		200
-	);
+	const { form, update, reset } = useForm<FormState>(initialState);
 
-	const toggleGenre = (genreId: number) => {
-		const isSelected = form.genres.includes(genreId);
-		if (isSelected) {
+	const debouncedForm = useDebounce(form, 500);
+
+	const toggleGenre = useCallback(
+		(genreId: number) => {
 			update(
 				"genres",
-				form.genres.filter((id) => id !== genreId)
+				form.genres.includes(genreId)
+					? form.genres.filter((id) => id !== genreId)
+					: [...form.genres, genreId]
 			);
-			return;
-		}
-		update("genres", [...form.genres, genreId]);
-	};
+		},
+		[form.genres, update]
+	);
 
 	const updateSelectSortBy = (value: SortValue) => {
-		update("sort", value as SortValue);
+		update("sort", value);
 	};
 
 	const updateRating = (value: [number, number]) => update("rating", value);
 
 	return {
 		toggleGenre,
-		genres: data?.genres || [],
-		form,
+		genres: data?.genres ?? [],
+		formState: form,
+		debouncedFormState: debouncedForm,
 		updateSelectSortBy,
 		updateRating,
 		reset
