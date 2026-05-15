@@ -36,9 +36,13 @@ export interface MoviesResponse {
 	total_results: number;
 }
 
-export type GetMoviesByCategoryArgs = {
-	category: MovieCategoryType;
+interface BaseArgs {
 	page?: number;
+};
+
+
+export interface GetMoviesByCategoryArgs extends BaseArgs {
+	category: MovieCategoryType;
 };
 
 export type SortByType =
@@ -51,10 +55,13 @@ export type SortByType =
 	| "title.asc"
 	| "title.desc";
 
-export type DiscoverMoviesArgs = {
-	page?: number;
+export interface DiscoverMoviesArgs extends BaseArgs {
 	sort_by?: SortByType;
 	vote_average_gte?: number;
 	vote_average_lte?: number;
 	with_genres?: string;
+};
+
+export interface SearchMoviesArgs extends BaseArgs {
+	query: string;
 };

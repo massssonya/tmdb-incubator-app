@@ -1,45 +1,43 @@
-import { Container, Typography } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
-import { useForm } from "../../hooks/useForm";
 import { SectionLayout } from "../../components/SectionLayout";
 import { Search } from "../../components/Search";
 
-interface FormState {
-	search: string;
-}
+import { useSearchMoviesPage } from "./useSearchMoviesPage";
+
+import styles from "./styles.module.css";
+import { MoviesList } from "./MoviesList";
 
 export function SearchPage() {
-	const [searchParams, setSearchParams] = useSearchParams();
-	const query = searchParams.get("query") || ("" as string);
-
-	const formMethods = useForm<FormState>({ search: query });
-
-	const handleSubmit = () => {
-		setSearchParams({
-			query: formMethods.form.search
-		});
-	};
-
-	const handleReset = () => {
-		setSearchParams({});
-		formMethods.reset();
-	};
+	const searchMovies = useSearchMoviesPage();
 
 	return (
 		<SectionLayout>
 			<h1>Search Results</h1>
-			<Container disableGutters={true} sx={{ marginTop: "20px" }}>
-				<Search
-					value={formMethods.form.search}
-					onChange={(value) => formMethods.update("search", value)}
-					submit={handleSubmit}
-					reset={handleReset}
-					placeholder="Введите название фильма..."
-				/>
-			</Container>
-			<Typography sx={{ marginTop: "20px" }}>
-				Enter a movie title to start searching.
-			</Typography>
+
+			<Search
+				value={searchMovies.form.search}
+				onChange={searchMovies.updateSearch}
+				submit={searchMovies.handleSubmit}
+				reset={searchMovies.handleReset}
+				placeholder="Введите название фильма..."
+			/>
+
+			{searchMovies.query && (
+				<h2 className={styles.query}>Results for "{searchMovies.query}"</h2>
+			)}
+
+			{searchMovies.showInitialMessage && (
+				<p className={styles.info}>Enter a movie title to start searching.</p>
+			)}
+
+			{searchMovies.isError && (
+				<p className={styles.info}>Something went wrong.</p>
+			)}
+
+			{searchMovies.showNoResults && (
+				<p className={styles.info}>No results found.</p>
+			)}
+
+			<MoviesList {...searchMovies} />
 		</SectionLayout>
 	);
 }

@@ -16,3 +16,8 @@
 		repeat(var(--columns), 1fr);
 	gap: 16px;
 }
+
+.footer {
+	display: flex;
+	justify-content: center;
+}

@@ -1,5 +1,5 @@
-import { Pagination, Stack } from "@mui/material";
 import styles from "./styles.module.css";
+import { PaginationComponent } from "../UI/Pagination";
 
 interface Props {
 	page: number;
@@ -15,16 +15,15 @@ export function MoviesPagination({
 	onChange
 }: Props) {
 	return (
-		<Stack spacing={2} className={styles.pagination}>
-			<Pagination
+		<div className={styles.pagination}>
+			<PaginationComponent
 				count={totalPages}
 				page={page}
-				color="primary"
 				size="large"
 				shape="rounded"
 				disabled={disabled}
 				onChange={(_, page) => onChange(page)}
 			/>
-		</Stack>
+		</div>
 	);
 }

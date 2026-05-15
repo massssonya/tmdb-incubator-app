@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import styles from "./styles.module.css";
+import { Button } from "../UI/Button";
 
 interface SearchProps {
 	value: string;
@@ -49,7 +49,7 @@ export function Search({
 				)}
 			</div>
 
-			<Button variant="contained" disabled={!value} type="submit">
+			<Button variant="action" disabled={!value} type="submit">
 				{buttonText}
 			</Button>
 		</form>

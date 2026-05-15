@@ -10,9 +10,11 @@ interface FormState {
 	sort: SortValue;
 	rating: [number, number];
 	genres: number[];
+	page: number;
 }
 
 const initialState: FormState = {
+	page: 1,
 	sort: MOVIE_FILTER_ITEMS[0].value,
 	rating: [0, 10],
 	genres: []
@@ -23,7 +25,7 @@ export function useFilteredSortForm() {
 
 	const { form, update, reset } = useForm<FormState>(initialState);
 
-	const debouncedForm = useDebounce(form, 500);
+	const debouncedForm = useDebounce(form, 1000);
 
 	const toggleGenre = useCallback(
 		(genreId: number) => {
@@ -43,6 +45,8 @@ export function useFilteredSortForm() {
 
 	const updateRating = (value: [number, number]) => update("rating", value);
 
+	const updatePage = (value: number) => update("page", value);
+
 	return {
 		toggleGenre,
 		genres: data?.genres ?? [],
@@ -50,6 +54,7 @@ export function useFilteredSortForm() {
 		debouncedFormState: debouncedForm,
 		updateSelectSortBy,
 		updateRating,
+		updatePage,
 		reset
 	};
 }

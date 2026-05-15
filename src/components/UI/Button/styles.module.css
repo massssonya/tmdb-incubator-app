@@ -98,6 +98,15 @@
 	color: var(--color-indigo-500);
 }
 
+.action{
+	background-color: var(--color-blue-600);
+	color: var(--color-white);
+}
+
+.action:hover{
+	background-color: var(--color-blue-700);
+}
+
 /* modifiers */
 
 .fullWidth {

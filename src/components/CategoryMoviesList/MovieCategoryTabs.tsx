@@ -1,5 +1,6 @@
 import { MOVIE_CATEGORIES } from "../../lib/constants/movieSections";
-import type { MovieCategoryType } from "../../store/services/types";
+import type { MovieCategoryType } from "../../store/services/movies";
+
 import { Button } from "../UI/Button";
 import styles from "./styles.module.css";
 

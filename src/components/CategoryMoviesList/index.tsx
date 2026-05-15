@@ -18,7 +18,7 @@ export function CategoryMoviesList() {
 			<MoviesGrid
 				title={categoryMovies.selectedCategory.title}
 				movies={categoryMovies.movies}
-				isLoading={categoryMovies.isLoading}
+				// isLoading={categoryMovies.isLoading}
 			/>
 
 			{!categoryMovies.isLoading && (

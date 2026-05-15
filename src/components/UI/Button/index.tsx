@@ -8,7 +8,8 @@ export type ButtonVariant =
 	| "secondary"
 	| "outline"
 	| "ghost"
-	| "danger";
+	| "danger"
+	| "action";
 
 export type ButtonSize =
 	| "sm"

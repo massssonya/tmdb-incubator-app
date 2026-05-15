@@ -49,6 +49,7 @@ export function FilteredSortForm({
 
 			<Button
 				type="button"
+				variant="action"
 				size="md"
 				fullWidth={false}
 				onClick={reset}

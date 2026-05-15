@@ -4,7 +4,8 @@ import type {
 	DiscoverMoviesArgs,
 	GenreResponse,
 	GetMoviesByCategoryArgs,
-	MoviesResponse
+	MoviesResponse,
+	SearchMoviesArgs
 } from "./types";
 
 export const moviesApi = api.injectEndpoints({
@@ -60,6 +61,12 @@ export const moviesApi = api.injectEndpoints({
 				};
 			}
 		}),
+		searchMovies: build.query<MoviesResponse, SearchMoviesArgs>({
+			query: ({ query, page }) => ({
+				url: `3/search/movie`,
+				params: { query, ...(page && { page }) }
+			})
+		}),
 		getGenres: build.query<GenreResponse, void>({
 			query: () => ({
 				url: `3/genre/movie/list`
@@ -73,5 +80,6 @@ export const moviesApi = api.injectEndpoints({
 export const {
 	useGetMoviesByCategoryQuery,
 	useDiscoverMoviesQuery,
+	useSearchMoviesQuery,
 	useGetGenresQuery
 } = moviesApi;

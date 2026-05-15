@@ -1,0 +1,7 @@
+.pagination :global(.MuiPaginationItem-colorPrimary) {
+	color: var(--color-gray-900);
+}
+
+.pagination :global(.Mui-selected) {
+	color: var(--color-primary-text);
+}
