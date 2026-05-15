@@ -1,0 +1,7 @@
+.loader :global(.MuiLinearProgress-bar) {
+	background-color: var(--color-gray-900);
+}
+
+.loader {
+	background-color: var(--color-gray-100) !important;
+}
