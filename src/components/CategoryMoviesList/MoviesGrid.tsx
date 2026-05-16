@@ -6,7 +6,6 @@ import MovieSectionLayout from "../MovieSectionLayout";
 interface Props {
 	title: string;
 	movies: Movie[];
-	// isLoading: boolean;
 }
 
 export function MoviesGrid({ title, movies }: Props) {

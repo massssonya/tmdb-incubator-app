@@ -3,7 +3,7 @@ import { MovieCategoryTabs } from "./MovieCategoryTabs";
 import { MoviesGrid } from "./MoviesGrid";
 
 import { MoviesPagination } from "./MoviesPagination";
-import { useCategoryMovies } from "./useCategoryMovies";
+import { useCategoryMovies } from "./hooks/useCategoryMovies";
 
 export function CategoryMoviesList() {
 	const categoryMovies = useCategoryMovies();
@@ -18,7 +18,6 @@ export function CategoryMoviesList() {
 			<MoviesGrid
 				title={categoryMovies.selectedCategory.title}
 				movies={categoryMovies.movies}
-				// isLoading={categoryMovies.isLoading}
 			/>
 
 			{!categoryMovies.isLoading && (

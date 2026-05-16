@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 interface Props {
 	selectedCategory: MovieCategoryType;
-	onChange: (category: { title: string; category: MovieCategoryType }) => void;
+	onChange: (category: MovieCategoryType) => void;
 }
 
 export function MovieCategoryTabs({ selectedCategory, onChange }: Props) {
@@ -14,12 +14,13 @@ export function MovieCategoryTabs({ selectedCategory, onChange }: Props) {
 		<div className={styles.categorySwitchContainer}>
 			{MOVIE_CATEGORIES.map((categoryItem) => {
 				const isActive = selectedCategory === categoryItem.category;
+
 				return (
 					<Button
 						key={categoryItem.category}
 						variant={isActive ? "primary" : "outline"}
 						size="sm"
-						onClick={() => onChange(categoryItem)}
+						onClick={() => onChange(categoryItem.category)}
 					>
 						{categoryItem.title}
 					</Button>
